@@ -19,6 +19,42 @@ stick lengths     length of cut     sticks before cut
 */
 function solution(arr){
   // TODO: Create the solution
+  if(arr === null || arr == undefined) {
+    return [];
+  }
+  let index = 0;
+  let sticksBeforeCut = [];
+  while(true) {
+    let lengthOfCut = arr[0];
+    if(lengthOfCut === 0) {
+      for(let i = 1; i < arr.length; i++) {
+        if(arr[i] !== 0) {
+          lengthOfCut = arr[i];
+          break;
+        }
+      }
+      if(lengthOfCut === 0) {
+        break;
+      }
+    }
+    for(let i = 1; i < arr.length; i++) {
+      if(arr[i] !== 0 && arr[i] < lengthOfCut) {
+        lengthOfCut = arr[i];
+      }
+    }
+    let sticksLeft = 0;
+    for(let i = 0; i < arr.length; i++) {
+      if(arr[i] !== 0) {
+        arr[i] -= lengthOfCut;
+        sticksLeft++;
+      }
+    }
+    if(sticksLeft === 0) {
+      break;
+    }
+    sticksBeforeCut[index++] = sticksLeft;
+  }
+  return sticksBeforeCut;
 }
 
 module.exports = solution;

@@ -3,6 +3,16 @@
 // Note: If the number is a multiple of both 3 and 5, only count it once.
 function solution(number){
   // TODO: Create the solution
+  if(number === null || typeof number === 'string') {
+    return -1;
+  }
+  let sum = 0;
+  for(let i = 1; i < number; i++) {
+    if(i % 3 === 0 || i % 5 === 0) {
+      sum += i;
+    }
+  }
+  return sum;
 }
 
 module.exports = solution;
